@@ -1,0 +1,70 @@
+class McJabee:
+    def __init__(self):
+        self.items = {
+            "Cheese Burger": 50,
+            "Burger Lang": 40,
+            "Spaghetti with Fries": 75,
+            "French Fries": 30,
+            "Chicken with Rice": 105
+        }
+        self.table = {
+            "Table 1": False,
+            "Table 2": False,
+            "Table 3": False
+        }
+        self.orders = {
+            "Table 1": [],
+            "Table 2": [],
+            "Table 3": []
+        }
+
+    def add_item_to_menu(self, item_name, price):
+        self.items[item_name] = price
+
+    def book_tables(self, table_number):
+        self.table[table_number] = True
+
+    def customer_order(self, table_number, item_name):
+        self.orders[table_number].append(item_name)
+
+    def print_menu(self):
+        for item_name, price in self.items.items():
+            print(f"{item_name}: {price}")
+
+    def print_table_reservations(self):
+        for table_number, is_booked in self.table.items():
+            if is_booked:
+                print(f"{table_number} is reserved.")
+            else:
+                print(f"{table_number} is available.")
+
+    def print_customer_orders(self):
+        for table_number, orders in self.orders.items():
+            if orders:
+                formatted_orders = ", ".join(orders)
+                print(f"Table {table_number}: {formatted_orders}")
+            else:
+                print(f"Table {table_number}: No orders")
+
+
+
+
+mcjabee = McJabee()
+
+mcjabee.add_item_to_menu("Veggie Burger", 45)
+
+mcjabee.book_tables("Table 1")
+mcjabee.book_tables("Table 2")
+
+mcjabee.customer_order("Table 1", "Cheese Burger")
+mcjabee.customer_order("Table 1", "Burger Lang")
+mcjabee.customer_order("Table 2", "Spaghetti with Fries")
+mcjabee.customer_order("Table 2", "Chicken with Rice")
+
+print("Welcome to McJabee! Menu Items with Prices: ")
+mcjabee.print_menu()
+print("\n")
+print("Table Status: ")
+mcjabee.print_table_reservations()
+print("\n")
+mcjabee.print_customer_orders()

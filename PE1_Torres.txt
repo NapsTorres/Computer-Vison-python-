@@ -1,0 +1,26 @@
+import random
+import pwinput
+print("Welcome to Facebook")
+username = input("Enter Username: ")
+
+def generate_otp(length):
+    otp = ''.join(str(random.randint(0, 9)) for _ in range(length))
+    return otp
+
+def validate_otp(user_input, otp):
+    return user_input == otp
+
+length = 6
+otp = generate_otp(length)
+print("Your OTP as Password:", otp)
+
+password = pwinput.pwinput(prompt="Enter your password: ")
+print("Your password is:", '*' * len(password))
+
+if validate_otp(password, otp):
+    print("Log in Proceed!")
+    print("Please set your password")
+    new_password = input("Desired Password: ")
+    print("New Password Saved!")
+else:
+    print("OTP Incorrect!")

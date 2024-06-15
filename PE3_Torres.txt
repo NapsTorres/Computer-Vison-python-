@@ -1,0 +1,25 @@
+Vowels = ['a', 'e', 'i', 'o', 'u', 'A', 'E', 'O', 'U']
+
+while True:
+    Letter = input("Enter any letter: ")
+    if Letter in Vowels:
+        print("Thank you! It's a vowel.")
+        break
+    else:
+        print("That is not a vowel. Try Again!")
+        continue
+
+import random
+while True:
+    DiceNumber = input("Press enter to roll the dice")
+    NumberOnDice = random.randint(1, 6)
+    print("You got", NumberOnDice)
+    print("Roll again? Y/N")
+    RollAgain = input()
+    if RollAgain == "Y" or RollAgain == "y":
+        continue
+    elif RollAgain == "N" or RollAgain == "n":
+        break
+
+    
+

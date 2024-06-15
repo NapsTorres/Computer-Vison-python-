@@ -1,0 +1,69 @@
+employees_data = [
+    ("13-0023", "IMPERIAL", 30000, "CCS"),
+    ("14-0019", "BALDEMORO", 25000, "CCS"),
+    ("16-0087", "MARTINEZ", 27000, "QA"),
+    ("18-0065", "MANANSALA", 35000, "TRC"),
+    ("18-0066", "VOLANTE", 35000, "TRC")
+]
+
+
+class Employee:
+    def __init__(self, emp_id, emp_name, emp_salary, emp_department):
+        self.emp_id = emp_id
+        self.emp_name = emp_name
+        self.emp_salary = emp_salary
+        self.emp_department = emp_department
+
+    def calculate_emp_salary(self, hours_worked):
+        if hours_worked > 8:
+            overtime_hours = hours_worked - 8
+            overtime_amount = overtime_hours * (self.emp_salary / 8)
+            return self.emp_salary + overtime_amount
+        else:
+            return self.emp_salary
+
+    def emp_assign_department(self, new_department):
+        self.emp_department = new_department
+
+    def print_employee_details(self, hours_worked=None):
+        if hours_worked is not None:
+            total_salary = self.calculate_emp_salary(hours_worked)
+        else:
+            total_salary = self.emp_salary
+        total_salary = int(total_salary)
+        print(f"Employee ID: {self.emp_id}")
+        print(f"Employee Name: {self.emp_name}")
+        print(f"Employee Salary: ${total_salary}")
+        print(f"Employee Department: {self.emp_department}")
+        print("------------------------------")
+
+class UpdatedEmployee(Employee):
+    def __init__(self, emp_id, emp_name, emp_salary, emp_department):
+        super().__init__(emp_id, emp_name, emp_salary, emp_department)
+
+
+print("Original Employee Details: \n")
+employees = []
+for emp_data in employees_data:
+    emp_id, emp_name, emp_salary, emp_department = emp_data
+    emp = Employee(emp_id, emp_name, emp_salary, emp_department)
+    employees.append(emp)
+    emp.print_employee_details()
+    print()
+
+hours_worked = [12, 7, 8]  
+
+employees[0].emp_assign_department("ITSO")
+employees[4].emp_assign_department("MARKETING")
+
+print("Updated Employee Details: \n")
+for i, emp in enumerate(employees):
+    hours = hours_worked[i] if i < len(hours_worked) else None
+    emp.print_employee_details(hours) 
+    print()
+
+#I first study and understood the activity given. Next, I followed the instructions to define the Employee class with attributes emp_id, emp_name, emp_salary, and emp_department. Then I created the methods calculate_emp_salary() which calculate the worker's salary based totally on the hours worked, emp_assign_department() method updates the worker's department, and the print_employee_details() method that prints the employee's information. And I additionally created a new method referred to as UpdatedEmployee class that inherits from the Employee class. This class does not add any new attributes or methods, however it allows us to create a new employee object with the same attributes as an existing employee object. 
+
+#After that, I created a list of worker tuples called employees_data and used a for loop to create an Employee object for every tuple within the listing. I stored those objects in a new listing known as employees next, I printed the details of every worker inside the original listing by using the print_employee_details() method. Then, I used the emp_assign_department() method to replace the departments of the employees object in the listing. To calculate the salary of each employee, the calculate_emp_salary() code will checked if the number of hours worked was greater than 8. If it was, the code calculated the overtime pay by subtracting 8 from the the number of hours worked and multiplying the result by the employee's hourly rate which is calculated by dividing the employee's salary by 8. If the number of hours worked was not greater than 8, I simply returned the employee's salary. 
+
+#To create the UpdatedEmployee class, It used the super() function to call the constructor of the Employee class and initialize the attributes of the new class with the equal values as the existing class. This lets in me to create a new employee object with the same attributes as an existing employee object however with a different department. To print the updated employee details, I used a for loop to iterate over the employee's listing and passed in the number of hours worked as an argument to the print_employee_details() method. I also used the enumerate() feature to get the corresponding number of hours worked from the hours_worked list and update the salary of the eligible employees with >8 hours of work time. 

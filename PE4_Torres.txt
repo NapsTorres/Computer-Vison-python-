@@ -1,0 +1,35 @@
+def string(word):
+    if len(word) < 3:
+        return word
+    elif word.endswith('ing'):
+        return word + 'ly'
+    else:
+        return word + 'ing'
+
+word = input("Enter a word: ")
+print(string(word))
+
+
+
+def count(word):
+    count_word = {}
+    for char in word:
+        if char in count_word:
+            count_word[char] += 1
+        else:
+            count_word[char] = 1
+    return count_word
+
+word = input("Enter a word: ")
+count_word = count(word)
+
+sorted = sorted(count_word.items(), key=lambda x: x[1], reverse=True)
+
+for char, count in sorted:
+    if count > 1:
+        print(f"{char} {count} ")
+
+ 
+
+
+

@@ -1,0 +1,28 @@
+Sum = 0
+Diff = 0
+Prod = 1
+Quot = 1
+
+input_file = open("input.txt", "r")
+output_file = open("output.txt", "w")
+
+for number in input_file:
+    num = int(number)
+    Sum += num
+
+    if Diff == 0:
+        Diff = num
+    else:
+        Diff -= num
+
+    Prod *= num
+    Quot /= num
+
+
+print("Sum: ", Sum, file=output_file)
+print("Difference: ", Diff, file=output_file)
+print("Product:",  Prod, file=output_file)
+print("Quotient: ", (round(Quot, 5)), file=output_file)
+
+input_file.close()
+output_file.close()

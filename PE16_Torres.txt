@@ -1,0 +1,28 @@
+import numpy as np
+import cv2
+
+
+image = cv2.imread("tomjerry.jpg")
+
+mask1 = np.zeros(image.shape[:2], dtype=np.uint8)
+mask2 = np.zeros(image.shape[:2], dtype=np.uint8)
+
+cv2.circle(mask1, (600, 120), 150, 255, -1)
+
+cv2.circle(mask2, (150, 300), 120, 255, -1)
+
+combined_mask = cv2.bitwise_or(mask1, mask2)
+
+
+masked = cv2.bitwise_and(image, image, mask=combined_mask)
+
+canvas = np.zeros_like(image)
+canvas[mask1 > 0] = 255  
+canvas[mask2 > 0] = 255  
+
+cv2.imshow("Original", image)
+cv2.imshow("Mask Applied to Image", masked)
+cv2.imshow("Circular Masks", canvas)
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

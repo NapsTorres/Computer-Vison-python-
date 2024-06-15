@@ -1,0 +1,70 @@
+dec = int(input("Enter a number:"))
+
+def bin(dec):
+    bin_list = []
+
+    while dec > 0:
+        r = dec%2
+        bin_list.append(r)
+        dec = dec//2
+
+    bin_list = bin_list[::-1]
+
+    print("Binary:",end='')
+    for num in bin_list:
+        print(num, end='')
+
+def oct(dec):
+    oct_list = []
+
+    while dec > 0:
+        r = dec%8
+        oct_list.append(r)
+        dec = dec//8
+
+    oct_list = oct_list[::-1]
+
+    print("\nOctal:",end='')
+    for num in oct_list:
+        print(num, end='')
+
+def hex(dec):
+    hex_list = []
+
+    while dec > 0:
+        r = dec%16
+        hex_list.append(r)
+        dec = dec//16
+
+    hex_list = hex_list[::-1]
+
+    print("\nHexa:",end='')
+    for num in hex_list:
+        print('{0:x}'.format (num),end='')
+
+bin (dec)
+oct (dec)
+hex (dec)
+
+
+
+import datetime
+name = input("\nEnter your full name: ")
+bday = input("Enter your birthdate (mm-dd-yyyy): ")
+name_list = list(name)
+
+def age(bday_parts):
+    today = datetime.date.today()
+    age = today.year - int(bday_parts[2]) - 1
+
+    if today.month > int(bday_parts[0]) or (today.month == int(bday_parts[0]) and today.day >= int(bday_parts[1])):
+        age += 1
+    return age
+
+bday_parts = bday.split("-")
+age_value = age(bday_parts)
+
+name_list.append(int(age_value))
+
+print(name_list)
+
